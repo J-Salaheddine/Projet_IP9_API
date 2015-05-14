@@ -4,6 +4,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
+import com.projet.calculeSimilarite.CalculeDistanceIntersection;
 import com.projet.calculeSimilarite.CalculeIntersectionHistogramme;
 import com.projet.calculeSimilarite.RechercheSimilariteImage;
 import com.projet.model.ChargerImage;
@@ -106,8 +107,8 @@ public class Controleur {
 	 * @return
 	 */
 	public static float calculDeSimilariteDI(Signature sig1, Signature sig2){
-		CalculeIntersectionHistogramme css = new CalculeIntersectionHistogramme(sig1, sig2);
-		return css.getTauxSimlarite();
+		CalculeDistanceIntersection cdi = new CalculeDistanceIntersection(sig1, sig2);
+		return cdi.getTauxDsitanceIntersection();
 	}
 	
 	
