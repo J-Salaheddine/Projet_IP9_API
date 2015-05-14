@@ -85,12 +85,27 @@ public class Controleur {
 	}
 	
 	/**
+	 * Swain
+	 * intersection histo
 	 * Fonction permetant de calculer la similarité entre de signature
 	 * @param sig1
 	 * @param sig2
 	 * @return
 	 */
-	public static float calculerDeSimilarite(Signature sig1, Signature sig2){
+	public static float calculDeSimilariteIH(Signature sig1, Signature sig2){
+		CalculeIntersectionHistogramme css = new CalculeIntersectionHistogramme(sig1, sig2);
+		return css.getTauxSimlarite();
+	}
+	
+	/**
+	 * demande de prof
+	 * distance intersection
+	 * Fonction permetant de calculer la similarité entre de signature
+	 * @param sig1
+	 * @param sig2
+	 * @return
+	 */
+	public static float calculDeSimilariteDI(Signature sig1, Signature sig2){
 		CalculeIntersectionHistogramme css = new CalculeIntersectionHistogramme(sig1, sig2);
 		return css.getTauxSimlarite();
 	}
