@@ -4,7 +4,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 
-import com.projet.calculeSimilarite.CalculeSimilariteSig;
+import com.projet.calculeSimilarite.CalculeIntersectionHistogramme;
 import com.projet.calculeSimilarite.RechercheSimilariteImage;
 import com.projet.model.ChargerImage;
 import com.projet.model.ChargerRepertoire;
@@ -91,7 +91,7 @@ public class Controleur {
 	 * @return
 	 */
 	public static float calculerDeSimilarite(Signature sig1, Signature sig2){
-		CalculeSimilariteSig css = new CalculeSimilariteSig(sig1, sig2);
+		CalculeIntersectionHistogramme css = new CalculeIntersectionHistogramme(sig1, sig2);
 		return css.getTauxSimlarite();
 	}
 	
@@ -115,7 +115,7 @@ public class Controleur {
 	 */
 	public double calculerSimilarite(Signature sig1, Signature sig2){
 		double tauxDeSmimilarite;
-		CalculeSimilariteSig css = new CalculeSimilariteSig(sig1, sig2);
+		CalculeIntersectionHistogramme css = new CalculeIntersectionHistogramme(sig1, sig2);
 		tauxDeSmimilarite =(double) css.getTauxSimlarite();
 		return tauxDeSmimilarite;
 	}

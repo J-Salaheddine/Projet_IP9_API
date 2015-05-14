@@ -36,7 +36,7 @@ public class RechercheSimilariteImage {
 		for (i = 0; i < listefichiers.length; i++) {
 			if (listefichiers[i].endsWith(".txt") == true) {
 				ReadSignature lectureSignature = new ReadSignature(StaticValues.BDD_SIGANTURE+listefichiers[i]);
-				CalculeSimilariteSig calculSimilariteObd = new CalculeSimilariteSig(objetImage, lectureSignature);
+				CalculeIntersectionHistogramme calculSimilariteObd = new CalculeIntersectionHistogramme(objetImage, lectureSignature);
 				//CalculSimilariteObd calculSimilariteObd = new CalculSimilariteObd(objetImage, lectureSignature);
 				if(calculSimilariteObd.getTauxSimlarite() >= this.tauxDeSimilarite){
 					Float taux = calculSimilariteObd.getTauxSimlarite();
@@ -67,9 +67,10 @@ public class RechercheSimilariteImage {
 		for (i = 0; i < listefichiers.length; i++) {
 			if (listefichiers[i].endsWith(".txt") == true) {
 				ReadSignature lectureSignature = new ReadSignature(StaticValues.BDD_SIGANTURE+listefichiers[i]);
+				//CalculeDistanceIntersection calculSimilariteObd = new CalculeDistanceIntersection(objetImage, lectureSignature);
 				CalculeDistanceIntersection calculSimilariteObd = new CalculeDistanceIntersection(objetImage, lectureSignature);
 				//CalculeDistanceIntersectionImgbd calculSimilariteObd = new CalculeDistanceIntersectionImgbd(objetImage, lectureSignature);
-				Float taux = calculSimilariteObd.getTauxSimilarite();
+				Float taux = calculSimilariteObd.getTauxDsitanceIntersection();
 				if(taux >= this.tauxDeSimilarite){
 					
 					System.out.println(listefichiers[i]+" avec un taux de similarité de: "+taux);

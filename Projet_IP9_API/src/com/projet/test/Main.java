@@ -1,5 +1,9 @@
 package com.projet.test;
 
+import com.projet.calculeSimilarite.CalculeDistanceIntersection;
+import com.projet.outils.StaticValues;
+import com.projet.outils.Utiles;
+
 
 public class Main {
 
@@ -18,8 +22,8 @@ public class Main {
 		/**
 		 * Test de charement repértoire d'image a la BD
 		 */
-		String cheminDossier = "C:\\Users\\Nile\\Desktop\\Banque image";
-		//test.chargerRepertoire(cheminDossier);
+		String cheminDossier = "C:\\Users\\Public\\Pictures\\Sample Pictures";
+	//	test.chargerRepertoire(cheminDossier);
 		
 
 		
@@ -27,17 +31,18 @@ public class Main {
 		 * Test de callcule de cimilarité
 		 */
 	//	String cheminImageATester = "C:\\Users\\Nile\\Pictures\\Tulips.jpg";
-		test.rechercheImageSimlaire(cheminImage, 0.8f);
+		//test.rechercheImageSimlaire(cheminImage, 0.5f);
 		
 		/**
 		 * Test de callcule de cimilarité
 		 */
 		System.out.println("********************");
-		//test.rechercheImageSimlaire2(cheminImage, 0.1f);
-		
+		test.rechercheImageSimlaire2(cheminImage, 0.3f);
+		//System.out.println(test());
+
 
 		
-		
 	}
+
 
 }

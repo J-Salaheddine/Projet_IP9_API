@@ -255,7 +255,7 @@ public class Utiles {
 	        }
 	    }
 	    
-	    public static float[] normaliserVecteur(int[] v) {
+	    public static float[] normaliserVecteur(float[] v) {
 	    	float[] vResult = new float[v.length];
 			for (int i = 0; i < v.length; i++){
 				vResult[i] = v[i] / LongeurVecteur(v);
@@ -263,7 +263,7 @@ public class Utiles {
 			return vResult; 
 		}
 
-		private static float LongeurVecteur(int[] v) {
+		private static float LongeurVecteur(float[] v) {
 			float somme = 0;
 			for (int i = 0; i < v.length; i++)
 			{

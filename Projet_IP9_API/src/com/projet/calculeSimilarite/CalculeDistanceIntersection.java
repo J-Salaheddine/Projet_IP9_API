@@ -5,127 +5,123 @@ import com.projet.outils.StaticValues;
 import com.projet.outils.Utiles;
 
 public class CalculeDistanceIntersection {
-	private Signature signature1;
-	private Signature signature2;
 
+	float[] tab1N = new float[StaticValues.NOMBRE_DE_DIVISION_RG];
+	float[] tab2N = new float[StaticValues.NOMBRE_DE_DIVISION_BY];
+	float[] tab3N = new float[StaticValues.NOMBRE_DE_DIVISION_WB];
+	
+	float[] tab4N = new float[StaticValues.NOMBRE_DE_DIVISION_RG];
+	float[] tab5N = new float[StaticValues.NOMBRE_DE_DIVISION_BY];
+	float[] tab6N = new float[StaticValues.NOMBRE_DE_DIVISION_WB];
 	
 	public CalculeDistanceIntersection(Signature signature, Signature signature2) {
-		super();
-		this.signature1 = signature;
-		this.signature2 = signature2;
+		remplirTable(signature, signature2);
+		
+
 	}
-
-	/**
-	 * Divise la somme des min par la plus petite somme
-	 * @return
-	 */
-	public float getTauxSimilarite() {
-		float tauxDeSimilarite = sommeDesMin(this.signature1, signature2)/sommeDesMax(signature1, signature2);
-		return tauxDeSimilarite;
-	}
-
-	/**
-	 * Prend en parametre deux signature et envoie le resulta de la somme des min
-	 * @param oi1
-	 * @param oi2
-	 * @return
-	 */
-	private float sommeDesMin(Signature oi1, Signature oi2) {
-		float minsumRG = 0;
-		float minsumBY = 0;
-		float minsumWB = 0;
-
-		minsumRG = calculerMin(oi1, oi2, 0);
-		minsumBY = calculerMin(oi1, oi2, 1);
-		minsumWB = calculerMin(oi1, oi2, 2);
-		float sommeMin = (minsumRG + minsumBY + minsumWB) / 3;
-
-		return sommeMin;
-	}
-
-	/**
-	 * Prend en parametre deux signature et envoie la plus petite somme
-	 * @param oi1
-	 * @param oi2
-	 * @return
-	 */
-	public float sommeDesMax(Signature oi1, Signature oi2) {
-		float minsumRG = 0;
-		float minsumBY = 0;
-		float minsumWB = 0;
-
-		minsumRG = calculerMax(oi1, oi2, 0);
-		minsumBY = calculerMax(oi1, oi2, 1);
-		minsumWB = calculerMax(oi1, oi2, 2);
-		float plusPetiteSomme = (minsumRG + minsumBY + minsumWB) / 3;
-
-		return plusPetiteSomme;
-	}
-
-	/**
-	 * A partir de deux sigantures cette fonction permet de calculer la somme
-	 * des minimums a partir des deux histogramme 
-	 * c'est a dire a partir de deux tableau (histogrammes) [1,3,5] et [0,2,6] le resulta est: 0+2+5 = 7
-	 * 
-	 * @param oi1
-	 * @param oi2
-	 * @param elementNum
-	 * @param numeroTable
-	 * @return
-	 */
-	public int calculerMin(Signature oi1, Signature oi2, int numeroTable) {
-		int minumum = 0;
-		switch (numeroTable) {
-		case 0:
-			for (int i = 0; i < StaticValues.NOMBRE_DE_DIVISION_RG; i++) {
-				minumum += Utiles.getMin(oi1.getTabRgElement(i),
-						oi2.getTabRgElement(i));
-			}
-			break;
-		case 1:
-			for (int i = 0; i < StaticValues.NOMBRE_DE_DIVISION_BY; i++) {
-				minumum += Utiles.getMin(oi1.getTabByElement(i),
-						oi2.getTabByElement(i));
-			}
-			break;
-		case 2:
-			for (int i = 0; i < StaticValues.NOMBRE_DE_DIVISION_WB; i++) {
-				minumum += Utiles.getMin(oi1.getTabWbElement(i),
-						oi2.getTabWbElement(i));
-			}
-			break;
-		default:
-			minumum = -1;
-			System.out.println("Errore calculerMin classe Utiles !! ");
+	
+	private void remplirTable(Signature signature, Signature signature2){
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_RG;i++){
+			tab1N[i] = signature.getTabRgElement(i);
 		}
-		return minumum;
-	}
+		tab1N = Utiles.normaliserVecteur(tab1N);
 
-	public int calculerMax(Signature oi1, Signature oi2, int numeroTable) {
-		int minumum = 0;
-		switch (numeroTable) {
-		case 0:
-			for (int i = 0; i < StaticValues.NOMBRE_DE_DIVISION_RG; i++) {
-				minumum += Utiles.getMax(oi1.getTabRgElement(i),
-						oi2.getTabRgElement(i));
-			}
-			break;
-		case 1:
-			for (int i = 0; i < StaticValues.NOMBRE_DE_DIVISION_BY; i++) {
-				minumum += Utiles.getMax(oi1.getTabByElement(i),
-						oi2.getTabByElement(i));
-			}
-			break;
-		case 2:
-			for (int i = 0; i < StaticValues.NOMBRE_DE_DIVISION_WB; i++) {
-				minumum += Utiles.getMax(oi1.getTabWbElement(i),
-						oi2.getTabWbElement(i));
-			}
-			break;
-		default:
-			minumum = -1;
-			System.out.println("Errore calculerMin classe Utiles !! ");
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_BY;i++){
+			tab2N[i] = signature.getTabByElement(i);
 		}
-		return minumum;
+		tab2N = Utiles.normaliserVecteur(tab2N);
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_WB;i++){
+			tab3N[i] = signature.getTabWbElement(i);
+		}
+		tab3N = Utiles.normaliserVecteur(tab3N);
+		
+		
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_RG;i++){
+			tab4N[i] = signature2.getTabRgElement(i);
+		}
+		tab4N = Utiles.normaliserVecteur(tab4N);
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_BY;i++){
+			tab5N[i] = signature2.getTabByElement(i);
+		}
+		tab5N = Utiles.normaliserVecteur(tab5N);
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_WB;i++){
+			tab6N[i] = signature2.getTabWbElement(i);
+		}
+		tab6N = Utiles.normaliserVecteur(tab6N);
+		
 	}
+	
+	public float getTauxDsitanceIntersection(){
+		float taux = sommeDesMin()/sommeDesMax();
+		return taux;
+		
+	}
+	
+	public float sommeDesMin(){
+		float min1 = 0, min2 = 0, min3 = 0;
+		
+		float sommeDesMin = 0;
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_RG; i++){
+			if(tab1N[i] < tab4N[i]){
+				min1 += tab1N[i];
+			}else{
+				min1 += tab4N[i];
+			}
+		}
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_BY; i++){
+			if(tab2N[i] < tab5N[i]){
+				min2 += tab2N[i];
+			}else{
+				min2 += tab5N[i];
+			}
+		}
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_WB; i++){
+			if(tab3N[i] < tab6N[i]){
+				min3 += tab3N[i];
+			}else{
+				min3 += tab6N[i];
+			}
+		}
+		sommeDesMin = min1+min2+min3;
+		return sommeDesMin;
+	}
+	
+	public float sommeDesMax(){
+		float max1 = 0, max2 = 0, max3 = 0;
+		
+		float sommeDesMax = 0;
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_RG; i++){
+			if(tab1N[i] > tab4N[i]){
+				max1 += tab1N[i];
+			}else{
+				max1 += tab4N[i];
+			}
+		}
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_BY; i++){
+			if(tab2N[i] > tab5N[i]){
+				max2 += tab2N[i];
+			}else{
+				max2 += tab5N[i];
+			}
+		}
+		
+		for(int i=0 ; i<StaticValues.NOMBRE_DE_DIVISION_WB; i++){
+			if(tab3N[i] > tab6N[i]){
+				max3 += tab3N[i];
+			}else{
+				max3 += tab6N[i];
+			}
+		}
+		sommeDesMax = max1+max2+max3;
+		return sommeDesMax;
+	}
+	
+	
 }

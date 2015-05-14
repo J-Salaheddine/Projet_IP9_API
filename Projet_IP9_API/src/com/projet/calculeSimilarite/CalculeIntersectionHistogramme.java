@@ -5,12 +5,12 @@ import com.projet.outils.StaticValues;
 import com.projet.outils.Utiles;
 
 
-public class CalculeSimilariteSig {
+public class CalculeIntersectionHistogramme {
 	private Signature signature1;
 	private Signature signature2;
 
 	
-	public CalculeSimilariteSig(Signature signature, Signature lectureSignature) {
+	public CalculeIntersectionHistogramme(Signature signature, Signature lectureSignature) {
 		super();
 		this.signature1 = signature;
 		this.signature2 = lectureSignature;
